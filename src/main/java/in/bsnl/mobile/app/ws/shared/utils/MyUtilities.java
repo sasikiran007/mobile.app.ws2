@@ -33,7 +33,7 @@ public abstract class MyUtilities {
             }
 
         }
-        if(mobileAlert.getEntity().equalsIgnoreCase("serverHealth")) {
+        else if(mobileAlert.getEntity().equalsIgnoreCase("serverHealth")) {
             switch (alert.getProperty())
             {
                 case "uptime" :
@@ -48,6 +48,9 @@ public abstract class MyUtilities {
                 default :
                     message = alert.getEntityId() + " " + alert.getProperty() + " : " + alert.getPropertyValue();
             }
+        }
+        else {
+            message = alert.getEntityId() + " " + alert.getProperty() + " : " + alert.getPropertyValue();
         }
         mobileAlert.setMessage(message);
         return mobileAlert;
