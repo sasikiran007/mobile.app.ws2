@@ -8,6 +8,8 @@ import in.bsnl.mobile.app.ws.service.MobileAlertService;
 import in.bsnl.mobile.app.ws.shared.dto.MobileAlertDao;
 import in.bsnl.mobile.app.ws.shared.utils.MyUtilities;
 import in.bsnl.mobile.app.ws.shared.utils.RandomAlertId;
+import in.bsnl.mobile.app.ws.ui.model.response.ServerAlertStatResponse;
+import org.apache.catalina.Server;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,6 +60,46 @@ public class MobileAlertServiceImpl implements MobileAlertService {
             returned.add(mobileAlertDao);
         }
         return returned;
+    }
+
+    @Override
+    public long getAlertDate() {
+        return 0;
+    }
+
+    @Override
+    public int getServerAlertCount() {
+        return alertRepo.countServerAllAlerts();
+        //return 0;
+    }
+
+    @Override
+    public int getServerCriticalCount() {
+        return alertRepo.countServerCriticalAlerts();
+        //return 0;
+    }
+
+    @Override
+    public int getServerMajorCount() {
+        return alertRepo.countServerMajorAlerts();
+        //return 0;
+    }
+
+    @Override
+    public int getServerMinorCount() {
+        return alertRepo.countServerMinorAlerts();
+        //return 0;
+    }
+
+    @Override
+    public ServerAlertStatResponse getServerAlertStats() {
+        ServerAlertStatResponse serverAlertStatResponse = new ServerAlertStatResponse();
+        serverAlertStatResponse.setCount(getServerAlertCount());
+        serverAlertStatResponse.setCriticalCount(getServerCriticalCount());
+        serverAlertStatResponse.setDate(getAlertDate());
+        serverAlertStatResponse.setMajorCount(getServerMajorCount());
+        serverAlertStatResponse.setMinorCount(getServerMinorCount());
+        return serverAlertStatResponse;
     }
 
     private List<MobileAlert> alertToMobilealert(Iterable<Alert> alerts) {
