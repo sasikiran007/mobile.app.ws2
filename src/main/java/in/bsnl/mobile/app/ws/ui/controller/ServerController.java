@@ -1,8 +1,10 @@
 package in.bsnl.mobile.app.ws.ui.controller;
 
 
+import in.bsnl.mobile.app.ws.io.entity.Alert;
 import in.bsnl.mobile.app.ws.service.MobileAlertService;
 import in.bsnl.mobile.app.ws.shared.dto.MobileAlertDao;
+import in.bsnl.mobile.app.ws.ui.model.response.AlertStatResponse;
 import in.bsnl.mobile.app.ws.ui.model.response.MobileAlertResponse;
 import in.bsnl.mobile.app.ws.ui.model.response.ServerAlertStatResponse;
 import org.springframework.beans.BeanUtils;
@@ -13,48 +15,72 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+
 @RestController
-@RequestMapping("server")
+@RequestMapping("alert")
 public class ServerController {
 
-   @Autowired
+    @Autowired
     MobileAlertService mobileAlertService;
 
-    @GetMapping(path = "/filesystem")
+    @GetMapping(path = "/test")
     public String getFilesystems() {
-        return "Get filesystemAlerts was called";
+        return "Get test was called";
     }
 
-    @GetMapping(path = "/alert/all")
+    @GetMapping(path = "/list")
     public List<MobileAlertResponse> getMobileAlerts() {
         List<MobileAlertResponse> returned = new ArrayList<>();
         List<MobileAlertDao> mobileAlertDaos = mobileAlertService.getMobileAlerts();
-        for(MobileAlertDao mobileAlertDao : mobileAlertDaos) {
+        for (MobileAlertDao mobileAlertDao : mobileAlertDaos) {
             MobileAlertResponse mobileAlertResponse = new MobileAlertResponse();
             BeanUtils.copyProperties(mobileAlertDao, mobileAlertResponse);
             returned.add(mobileAlertResponse);
         }
 
-        return  returned;
+        return returned;
     }
 
-    @GetMapping(path = "/alert/critical/count")
-    public int getServerCriticalCount(){
+    @GetMapping(path = "/stat")
+    public List<AlertStatResponse> getAlertStats() {
+        return mobileAlertService.getAlertStats();
+    }
+
+    /* Mar302020
+    @GetMapping(path = "/server/critical/count")
+    private int getServerCriticalCount() {
         return mobileAlertService.getServerCriticalCount();
     }
-    @GetMapping(path = "/alert/major/count")
-    public int getServerMajorCount(){
+
+    @GetMapping(path = "/server/major/count")
+    private int getServerMajorCount() {
         return mobileAlertService.getServerMajorCount();
     }
-    @GetMapping(path = "/alert/minor/count")
-    public int getServerMinorCount(){
+
+    @GetMapping(path = "/server/minor/count")
+    private int getServerMinorCount() {
         return mobileAlertService.getServerMinorCount();
     }
+    */
 
-    @GetMapping(path = "/alert/stat")
-    public ServerAlertStatResponse getServerAlertStats() {
-        return mobileAlertService.getServerAlertStats();
-    }
+//    @GetMapping(path = "/stat/server")
+//    private AlertStatResponse getServerAlertStats() {
+//        return mobileAlertService.getServerAlertStats();
+//    }
+
+    //    May302020
+//    @GetMapping(path = "/stat/all")
+//    public AlertStatResponse getAllAlertStats() {
+//        return mobileAlertService.getAllAlertStats();
+//    }
+
+//    @GetMapping(path  = "/stat/database")
+//    public AlertStatResponse getDatabaseAlertStats() {
+//        return mobileAlertService.getDatabaseAlertStats();
+//    }
+//    May302020
+
+
     /*
     @GetMapping(path = "/alert/stat")
     public ServerAlertStatResponse getServerAlertStat() {
@@ -64,4 +90,4 @@ public class ServerController {
     }
 
      */
- }
+}

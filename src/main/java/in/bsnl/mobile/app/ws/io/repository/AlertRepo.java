@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface AlertRepo extends CrudRepository<Alert, Integer> {
+
     @Query("select count(*) from alert where alert_section = 'server' and alert_level = 'minor' ")
     int countServerMinorAlerts();
 
@@ -18,6 +19,34 @@ public interface AlertRepo extends CrudRepository<Alert, Integer> {
 
     @Query("select count(*) from alert where alert_section = 'server'")
     int countServerAllAlerts();
+
+    /* New code for all type alert stats May-30-2020*/
+
+    @Query("select count(*) from alert where alert_level = 'minor' ")
+    int countMinorAlerts();
+
+    @Query("select count(*) from alert where  alert_level = 'major' ")
+    int countMajorAlerts();
+
+    @Query("select count(*) from alert where  alert_level = 'critical' ")
+    int countCriticalAlerts();
+
+    @Query("select count(*) from alert")
+    int countAllAlerts();
+
+    /* Database Alert stats */
+    @Query("select count(*) from alert where alert_section = 'database' and alert_level = 'minor' ")
+    int countDatabaseMinorAlerts();
+
+    @Query("select count(*) from alert where alert_section = 'database' and alert_level = 'major' ")
+    int countDatabaseMajorAlerts();
+
+    @Query("select count(*) from alert where alert_section = 'database' and alert_level = 'critical' ")
+    int countDatabaseCriticalAlerts();
+
+    @Query("select count(*) from alert where alert_section = 'database'")
+    int countDatabaseAllAlerts();
+    /******** May-30-2020 ********************/
 
     /*@Query("select date from alert limit 1")
     String findDateOfAlert();*/

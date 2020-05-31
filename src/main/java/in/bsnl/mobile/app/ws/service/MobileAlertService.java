@@ -1,21 +1,32 @@
 package in.bsnl.mobile.app.ws.service;
 
 import in.bsnl.mobile.app.ws.shared.dto.MobileAlertDao;
+import in.bsnl.mobile.app.ws.ui.model.response.AlertStatResponse;
 import in.bsnl.mobile.app.ws.ui.model.response.ServerAlertStatResponse;
 
 import java.util.List;
 
 public interface MobileAlertService {
-    public List<MobileAlertDao> getMobileAlerts();
+    List<MobileAlertDao> getMobileAlerts();
 
-    public long getAlertDate();
-    public int getServerAlertCount();
+    long getAlertDate();
+//    public int getServerAlertCount();
 
-    int getServerCriticalCount();
+//    int getServerCriticalCount();
+//
+//    int getServerMajorCount();
+//
+//    int getServerMinorCount();
 
-    int getServerMajorCount();
+//    AlertStatResponse getServerAlertStats();
 
-    int getServerMinorCount();
+    /*May302020*/
+//    AlertStatResponse getAllAlertStats();
 
-    ServerAlertStatResponse getServerAlertStats();
+//    AlertStatResponse getDatabaseAlertStats();
+
+    /*May302020*/
+
+    /*May312020*/
+    List<AlertStatResponse> getAlertStats();
 }
