@@ -16,40 +16,47 @@ public abstract class MyUtilities {
         mobileAlert.setDate(alert.getDate());
         mobileAlert.setOsName(alert.getOsName());
         mobileAlert.setEntity(alert.getEntity());
+        mobileAlert.setHostname(alert.getHostname());
         String message = "";
-        if(mobileAlert.getEntity().equalsIgnoreCase("filesystem")) {
+        if (mobileAlert.getEntity().equalsIgnoreCase("filesystem")) {
             switch (alert.getProperty()) {
-                case "utilization" :
+                case "utilization":
                     message = alert.getEntityId() + " is " + alert.getPropertyValue() + "% utilized";
                     break;
-                case "rwStatus" :
+                case "rw status":
                     message = alert.getEntityId() + " is  read only";
                     break;
-                case  "mountStatus" :
+                case "mount status":
                     message = alert.getEntityId() + " is  not mounted";
                     break;
-                default:message = alert.getEntityId() + " " + alert.getProperty() + " = " + alert.getPropertyValue();
+                default:
+                    message = alert.getEntityId() + " " + alert.getProperty() + " = " + alert.getPropertyValue();
 
             }
 
-        }
-        else if(mobileAlert.getEntity().equalsIgnoreCase("serverHealth")) {
-            switch (alert.getProperty())
-            {
-                case "uptime" :
+        } else if (mobileAlert.getEntity().equalsIgnoreCase("server health")) {
+            switch (alert.getProperty()) {
+                case "uptime":
                     message = alert.getEntityId() + " uptime is " + alert.getPropertyValue() + " day(s)";
                     break;
-                case "pingStatus" :
+                case "ping status":
                     message = alert.getEntityId() + " is not reachable.";
                     break;
-                case "sshStatus" :
+                case "ssh status":
                     message = alert.getEntityId() + " : ssh failed";
                     break;
-                default :
+                default:
                     message = alert.getEntityId() + " " + alert.getProperty() + " : " + alert.getPropertyValue();
             }
-        }
-        else {
+        } else if (mobileAlert.getEntity().equalsIgnoreCase("SRM maintenance")) {
+            switch (alert.getProperty()) {
+                case "ssh status":
+                    message = alert.getEntityId() + " ssh is failed";
+                    break;
+                default:
+                    message = alert.getEntityId() + " " + alert.getProperty() + " : " + alert.getPropertyValue();
+            }
+        } else {
             message = alert.getEntityId() + " " + alert.getProperty() + " : " + alert.getPropertyValue();
         }
         mobileAlert.setMessage(message);

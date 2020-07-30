@@ -21,6 +21,7 @@ public class MobileAlert {
     private String osName;
     private String appName;
     private String message;
+    private String hostname;
 
     public int getId() {
         return id;
@@ -92,5 +93,13 @@ public class MobileAlert {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getHostname() {
+        return hostname;
+    }
+
+    public void setHostname(String hostname) {
+        this.hostname = hostname;
     }
 }

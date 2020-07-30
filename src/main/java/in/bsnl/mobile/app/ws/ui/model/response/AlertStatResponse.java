@@ -1,7 +1,7 @@
 package in.bsnl.mobile.app.ws.ui.model.response;
 
 public class AlertStatResponse {
-    private long date;
+    private String date;
     private int count;
 
     /*public ServerAlertStatResponse(long date, int count, int criticalCount, int majorCount, int minorCount) {
@@ -19,11 +19,7 @@ public class AlertStatResponse {
     private int minorCount;
     private String section; //May3120202
 
-
-
-
-
-    public long getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -51,7 +47,7 @@ public class AlertStatResponse {
         this.minorCount = minorCount;
     }
 
-    public void setDate(long date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

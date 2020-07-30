@@ -1,17 +1,7 @@
-package in.bsnl.mobile.app.ws.io.entity;
+package in.bsnl.mobile.app.ws.shared.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-@Entity(name =  "alert")
-public class Alert {
-    @Id
-    @GeneratedValue
-    @Column(nullable = false)
+public class AlertDao {
     private int id;
-
     private long date;
     private String alertId;
     private String entity;

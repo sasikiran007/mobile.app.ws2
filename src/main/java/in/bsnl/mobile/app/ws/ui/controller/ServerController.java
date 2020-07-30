@@ -3,12 +3,12 @@ package in.bsnl.mobile.app.ws.ui.controller;
 
 import in.bsnl.mobile.app.ws.io.entity.Alert;
 import in.bsnl.mobile.app.ws.service.MobileAlertService;
+import in.bsnl.mobile.app.ws.shared.dto.AlertDao;
 import in.bsnl.mobile.app.ws.shared.dto.MobileAlertDao;
-import in.bsnl.mobile.app.ws.ui.model.response.AlertStatResponse;
-import in.bsnl.mobile.app.ws.ui.model.response.MobileAlertResponse;
-import in.bsnl.mobile.app.ws.ui.model.response.ServerAlertStatResponse;
+import in.bsnl.mobile.app.ws.ui.model.response.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,22 +28,39 @@ public class ServerController {
         return "Get test was called";
     }
 
-    @GetMapping(path = "/list")
-    public List<MobileAlertResponse> getMobileAlerts() {
-        List<MobileAlertResponse> returned = new ArrayList<>();
-        List<MobileAlertDao> mobileAlertDaos = mobileAlertService.getMobileAlerts();
-        for (MobileAlertDao mobileAlertDao : mobileAlertDaos) {
-            MobileAlertResponse mobileAlertResponse = new MobileAlertResponse();
-            BeanUtils.copyProperties(mobileAlertDao, mobileAlertResponse);
-            returned.add(mobileAlertResponse);
-        }
+//    @GetMapping(path = "/list")
+//    public List<MobileAlertResponse> getMobileAlerts() {
+//        List<MobileAlertResponse> returned = new ArrayList<>();
+//        List<MobileAlertDao> mobileAlertDaos = mobileAlertService.getMobileAlerts();
+//        for (MobileAlertDao mobileAlertDao : mobileAlertDaos) {
+//            MobileAlertResponse mobileAlertResponse = new MobileAlertResponse();
+//            BeanUtils.copyProperties(mobileAlertDao, mobileAlertResponse);
+//            returned.add(mobileAlertResponse);
+//        }
+//
+//        return returned;
+//    }
 
+    @GetMapping(path = "/list")
+    public List<AlertResponse> getAlerts(){
+        List<AlertResponse> returned = new ArrayList<>();
+        List<AlertDao> alertDaos = mobileAlertService.getAlerts();
+        for(AlertDao alertDao : alertDaos) {
+            AlertResponse alertResponse = new AlertResponse();
+            BeanUtils.copyProperties(alertDao,alertResponse);
+            returned.add(alertResponse);
+        }
         return returned;
     }
 
     @GetMapping(path = "/stat")
     public List<AlertStatResponse> getAlertStats() {
         return mobileAlertService.getAlertStats();
+    }
+
+    @GetMapping(path = "/trackers")
+    public List<TrackerResponse> getTrackers() {
+        return mobileAlertService.getTrackers();
     }
 
     /* Mar302020

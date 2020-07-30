@@ -1,17 +1,6 @@
-package in.bsnl.mobile.app.ws.io.entity;
+package in.bsnl.mobile.app.ws.ui.model.response;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-
-@Entity(name =  "alert")
-public class Alert {
-    @Id
-    @GeneratedValue
-    @Column(nullable = false)
-    private int id;
-
+public class AlertResponse {
     private long date;
     private String alertId;
     private String entity;
@@ -24,14 +13,6 @@ public class Alert {
     private String propertyValue;
     private String hostname;
     private String scriptName;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public long getDate() {
         return date;
