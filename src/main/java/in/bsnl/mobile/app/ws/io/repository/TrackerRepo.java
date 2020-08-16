@@ -9,5 +9,4 @@ import org.springframework.stereotype.Repository;
 public interface TrackerRepo extends CrudRepository<Tracker,Integer> {
     @Query("SELECT trackerNumber from alert_tracker where scriptName like ?1")
     String getTackerNumber(String scriptName);
-
 }
