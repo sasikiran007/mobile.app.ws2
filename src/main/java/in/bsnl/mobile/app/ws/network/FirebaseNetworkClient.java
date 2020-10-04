@@ -14,10 +14,14 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.IOException;
 import java.io.StringReader;
+import org.apache.log4j.Logger;
 
 
 public class FirebaseNetworkClient {
+
      public static FirebaseUser getUserByEmail(String email) {
+         Logger log = Logger.getLogger(FirebaseNetworkClient.class.getName());
+         log.debug("FirebaseNetworkClient : getUserByEmail is called");
          DefaultHttpClient httpClient = new DefaultHttpClient();
          FirebaseUser firebaseUser = new FirebaseUser();
          try {
@@ -27,6 +31,7 @@ public class FirebaseNetworkClient {
 
              int statusCode = response.getStatusLine().getStatusCode();
              if(statusCode != 200) {
+                 log.debug("FirebaseNetworkClient : request to FCM API is failed");
                  throw new RuntimeException("Failed with HTTP error code :"+statusCode);
              }
 

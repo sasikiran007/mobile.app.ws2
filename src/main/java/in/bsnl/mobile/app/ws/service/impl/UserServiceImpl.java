@@ -1,15 +1,11 @@
 package in.bsnl.mobile.app.ws.service.impl;
 
-import in.bsnl.mobile.app.ws.exceptions.UserServiceException;
-import in.bsnl.mobile.app.ws.io.entity.RegisteredUser;
 import in.bsnl.mobile.app.ws.io.entity.User;
-import in.bsnl.mobile.app.ws.io.repository.RegisteredUserRepo;
 import in.bsnl.mobile.app.ws.io.repository.UserProjectRepo;
 import in.bsnl.mobile.app.ws.io.repository.UserRepo;
 import in.bsnl.mobile.app.ws.io.repository.UserRoleRepo;
 import in.bsnl.mobile.app.ws.network.FirebaseNetworkClient;
 import in.bsnl.mobile.app.ws.network.FirebaseUser;
-import in.bsnl.mobile.app.ws.service.RegisteredUserService;
 import in.bsnl.mobile.app.ws.service.UserService;
 import in.bsnl.mobile.app.ws.shared.dto.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -14,6 +14,7 @@ public class Tracker {
 
     private String scriptName;
     private String trackerNumber;
+    private String trackerNumberOld;
     private int period;
 
     public int getId() {
@@ -46,5 +47,13 @@ public class Tracker {
 
     public void setPeriod(int period) {
         this.period = period;
+    }
+
+    public String getTrackerNumberOld() {
+        return trackerNumberOld;
+    }
+
+    public void setTrackerNumberOld(String trackerNumberOld) {
+        this.trackerNumberOld = trackerNumberOld;
     }
 }
